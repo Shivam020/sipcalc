@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css" />
+<body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="index.html">
+      <img src="a.jpeg" alt="logo" style="width:100px;">
+    </a>
+    
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="text-success">
+            
+          </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="SERVICE.html">SERVICES</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="CONTACT.html">CONTACT US</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about_us.html"> ABOUT US</a>
+      </li>
+    </ul>
+  </nav>
+ 
+  <div class="container-fluid">
+    
+  </div>
+ 
+    <div class="sip-calculator">
+        <div class="top">
+          <h2>SIP CALCULATOR </h2>
+  
+          <form >
+            <div class="group">
+              <div class="title">Monthly Investment</div>
+              <input type="text" id="MI" placeholder="Amount per Month" class="amount"  name="MI">
+            </div>
+  
+            <div class="group">
+              <div class="title">Expected Interest Rate</div>
+              <input type="text" id="II" placeholder="Rate eg-10" class="interest-rate" name="II" />
+            </div>  
+            <div class="group">
+                <div class="title">Tenure in Years </div>
+ <input type="text" id="abc" placeholder="Years" class="Tenure"  name="Y" >
+               </div>
+            </div>
+         
+        </form>
+      </div>
+      <table><tr>
+      <div class="sip-calculator">
+      <div class="result">
+        <div class="left">
+        
+            <div class="total-investment">
+                <h3>Total Ivestment </h3>
+                <div class="value"><label id="investment">0000</label><div>
+              </div>
+
+          <div class="total-interest">
+            <h3>Total Interest Payable(Expected)</h3>
+            <div class="value"><label id="intrest"> 00000</label>
+
+          <div class="total-amount" id="total">
+            <h3>Total Amount</h3>
+            <div class="value"><label id="total1">0000</label></div>
+          </div>
+
+          
+        </div>
+          </div></div></tr>
+          <tr>
+        <div class="right" id="piechart_3d" style="width: 900px; height: 500px;"></div>
+      
+      </div>
+    </div>
+    </div>
+</tr>
+      </table>
+    </body>
+    <script >
+         function calculate() 
+       {
+
+           var monthlyIN=document.getElementById("MI").value;
+      var intrestIN=document.getElementById("II").value;
+      var timeIN=document.getElementById("abc").value;
+
+       var monthly=parseFloat(monthlyIN);
+       var intrest=parseFloat(intrestIN);
+       var time=parseFloat(timeIN);
+      
+          var M,T,N;
+          M = Math.round((Math.pow((1 + (Math.pow((1 + intrest / 100), (1 / 12)) - 1)), (time * 12)) - 1) / (Math.pow((1+ intrest / 100), (1 / 12)) - 1) * monthly);
+          T = (monthly*12)*time;
+          N= M-T;    
+           var amount=T;
+           var intrest=N;
+       
+  document.getElementById('total1').innerHTML=M;
+      document.getElementById('intrest').innerHTML=N;
+      document.getElementById('investment').innerHTML=T;
+
+
+
+       
+       
+
+     
+       
+       google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Intrest',     N],
+          ['Investment',     T]
+
+        ]);
+
+        var options = {
+          title: 'YOUR INVESTMENTS ',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+      }
+    } setInterval(calculate,1000);
+</script>
+      </script>
+    
+      <script  type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+</html>
